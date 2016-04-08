@@ -16,6 +16,8 @@
 <template name="leaderboard">
   {{> EasySearch.Input index=index attributes=inputAttributes }}
 
+  {{> EasySearch.FieldInput field="developers" index=index attributes=inputAttributes}}
+
   {{#EasySearch.IfInputEmpty index=index }}
     <div class="padded examples">For example "Grace Gaga"</div>
   {{else}}
