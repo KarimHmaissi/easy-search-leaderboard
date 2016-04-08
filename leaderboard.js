@@ -18,15 +18,15 @@ AppsIndex = new EasySearch.Index({
         selector.category = categoryFilter;
       }
 
-      // selector.type = 'game';
+      selector.type = 'game';
 
       return selector;
     }
   }),
   collection: AppDetails,
-  fields: ['name'],
+  fields: ['name', 'type', 'is_free', 'developers'],
   defaultSearchOptions: {
-    limit: 10
+    limit: 8
   },
   permission: () => {
     //console.log(Meteor.userId());
