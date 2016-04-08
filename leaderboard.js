@@ -174,16 +174,15 @@ var first_names = [
       }
     };
 
-
-    i++;
-    if(i >= length) {
-      clearInterval(interval);
-    }
-
     var interval = Meteor.setInterval(function () {
       var appId = appIds[i].appid;
 
       getAppDetails(appId, callback);
+
+      i++;
+      if(i >= length) {
+        clearInterval(interval);
+      }
 
     }, 5000)
   };
