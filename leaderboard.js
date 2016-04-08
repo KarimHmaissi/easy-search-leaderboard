@@ -130,6 +130,7 @@ var first_names = [
 
   var getAppDetails = function (appId, callback) {
     var response = HTTP.get('http://store.steampowered.com/api/appdetails/?appids=' + appId).data;
+    console.log(appId);
     console.log(response[appId].success);
     if(response[appId].success + "" === "true") {
       console.log('got successful result!!!!!!!');
