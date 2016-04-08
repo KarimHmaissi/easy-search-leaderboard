@@ -23,7 +23,7 @@ AppsIndex = new EasySearch.Index({
       return selector;
     }
   }),
-  collection: Apps,
+  collection: AppDetails,
   fields: ['name', 'type', 'is_free', 'developers'],
   defaultSearchOptions: {
     limit: 8
