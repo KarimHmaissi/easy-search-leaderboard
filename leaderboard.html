@@ -61,19 +61,19 @@
   {{#if showMore}}
     {{> EasySearch.Input name="mini-index" index=index attributes=inputAttributes }}
 
-    <!-- <ul> -->
+    <ul>
       {{#EasySearch.Each name="mini-index" index=index }}
-        <h1>{{name}}</h1>
-        <p>{{release_date}}</p>
+        <li>{{name}}</li>
       {{/EasySearch.Each}}
-    <!-- </ul> -->
+    </ul>
   {{/if}}
 
 </template>
 
 <template name="app">
   <li class="app {{selected}}">
-    <span class="name">{{name}}</span>
+    <h1 class="name">{{name}}</h1>
+    <h1 class="name">{{release_date}}</h1>
     <span class="metadata">
       <span class="category">{{category}}</span><span class="score">{{score}}</span>
     </span>
