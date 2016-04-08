@@ -15,7 +15,7 @@ AppsIndex = new EasySearch.Index({
       let categoryFilter = options.search.props.categoryFilter;
 
       if (_.isString(categoryFilter) && !_.isEmpty(categoryFilter)) {
-        selector.publishers[0] = categoryFilter;
+        selector.publishers = categoryFilter;
       }
 
       selector.type = 'game';
