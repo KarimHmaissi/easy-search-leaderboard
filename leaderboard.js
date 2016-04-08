@@ -24,9 +24,9 @@ AppsIndex = new EasySearch.Index({
     }
   }),
   collection: AppDetails,
-  fields: ['name', 'type', 'is_free', 'developers'],
+  fields: ['name'],
   defaultSearchOptions: {
-    limit: 8
+    limit: 10
   },
   permission: () => {
     //console.log(Meteor.userId());
