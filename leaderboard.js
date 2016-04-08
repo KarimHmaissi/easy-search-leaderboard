@@ -18,13 +18,13 @@ AppsIndex = new EasySearch.Index({
         selector.category = categoryFilter;
       }
 
-      selector.type = 'game';
+      // selector.type = 'game';
 
       return selector;
     }
   }),
   collection: Apps,
-  fields: ['name'],
+  fields: ['name', 'type', 'is_free', 'developers'],
   defaultSearchOptions: {
     limit: 8
   },
