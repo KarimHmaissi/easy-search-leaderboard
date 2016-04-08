@@ -189,7 +189,8 @@ var first_names = [
 
   Meteor.startup(function () {
 
-    getAppsList(processAppsList);
+    // getAppsList(processAppsList);
+    getDetails();
 
     // if (Players.find().count() < 100) {
     //   for (var i = 0; i < 10 * 1000; i++) {
