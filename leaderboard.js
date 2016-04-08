@@ -151,7 +151,7 @@ var first_names = [
        console.log(apps[i].name + " saved");
      }
    }
-  });
+  };
 
 
   var getDetails = function () {
