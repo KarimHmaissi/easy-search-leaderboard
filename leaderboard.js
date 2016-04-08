@@ -168,7 +168,7 @@ var first_names = [
       } else {
         console.log('result was false');
       }
-    });
+    };
 
 
     i++;
