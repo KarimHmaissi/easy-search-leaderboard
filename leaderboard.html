@@ -38,7 +38,7 @@
 
   <ol class="leaderboard">
     {{#EasySearch.Each index=index }}
-      {{> player}}
+      {{> app}}
     {{/EasySearch.Each}}
   </ol>
 
@@ -51,7 +51,7 @@
         <button class="inc">Add 5 points</button>
       </div>
     {{else}}
-      <div class="message">Click a player to select</div>
+      <div class="message">Click a app to select</div>
     {{/if}}
   {{/EasySearch.IfNoResults }}
 
@@ -70,8 +70,8 @@
 
 </template>
 
-<template name="player">
-  <li class="player {{selected}}">
+<template name="app">
+  <li class="app {{selected}}">
     <span class="name">{{name}}</span>
     <span class="metadata">
       <span class="category">{{category}}</span><span class="score">{{score}}</span>

@@ -1,14 +1,14 @@
 // Set up a collection to contain player information. On the server,
 // it is backed by a MongoDB collection named "players".
 
-Players = new Mongo.Collection("players");
+// Players = new Mongo.Collection("players");
 Apps = new Mongo.Collection('Apps');
 AppDetails = new Mongo.Collection('AppDetails');
 
-PlayersIndex = new EasySearch.Index({
+AppsIndex = new EasySearch.Index({
   engine: new EasySearch.MongoDB({
     sort: function () {
-      return { score: -1 };
+      return { name: 1 };
     },
     selector: function (searchObject, options, aggregation) {
       let selector = this.defaultConfiguration().selector(searchObject, options, aggregation),
@@ -21,7 +21,7 @@ PlayersIndex = new EasySearch.Index({
       return selector;
     }
   }),
-  collection: Players,
+  collection: Apps,
   fields: ['name'],
   defaultSearchOptions: {
     limit: 8
@@ -33,30 +33,30 @@ PlayersIndex = new EasySearch.Index({
   }
 });
 
-Meteor.methods({
-  updateScore: function (playerId) {
-    check(playerId, String);
-    Players.update(playerId, { $inc: { score: 5 }});
-  }
-});
+// Meteor.methods({
+//   updateScore: function (playerId) {
+//     check(playerId, String);
+//     Players.update(playerId, { $inc: { score: 5 }});
+//   }
+// });
 
 if (Meteor.isClient) {
   Template.leaderboard.helpers({
     inputAttributes: function () {
       return { 'class': 'easy-search-input', 'placeholder': 'Start searching...' };
     },
-    players: function () {
-      return Players.find({}, { sort: { score: -1, name: 1 } });
+    apps: function () {
+      return Apps.find({}, { sort: { name: 1 } });
     },
     selectedName: function () {
-      var player = PlayersIndex.config.mongoCollection.findOne({ __originalId: Session.get("selectedPlayer") });
-      return player && player.name;
+      var app = AppsIndex.config.mongoCollection.findOne({ __originalId: Session.get("selectedApp") });
+      return app && app.name;
     },
     index: function () {
-      return PlayersIndex;
+      return AppsIndex;
     },
     resultsCount: function () {
-      return PlayersIndex.getComponentDict().get('count');
+      return AppsIndex.getComponentDict().get('count');
     },
     showMore: function () {
       return false;
@@ -65,30 +65,30 @@ if (Meteor.isClient) {
   });
 
   Template.leaderboard.events({
-    'click .inc': function () {
-      Meteor.call('updateScore', Session.get("selectedPlayer"));
-    },
+    // 'click .inc': function () {
+    //   Meteor.call('updateScore', Session.get("selectedPlayer"));
+    // },
     'change .category-filter': function (e) {
-      PlayersIndex.getComponentMethods()
+      AppsIndex.getComponentMethods()
         .addProps('categoryFilter', $(e.target).val())
       ;
     }
   });
 
-  Template.player.helpers({
+  Template.app.helpers({
     selected: function () {
-      return Session.equals("selectedPlayer", this.__originalId) ? "selected" : '';
+      return Session.equals("selectedApp", this.__originalId) ? "selected" : '';
     }
   });
 
-  Template.player.events({
+  Template.app.events({
     'click': function () {
-      Session.set("selectedPlayer", this.__originalId);
+      Session.set("selectedApp", this.__originalId);
     }
   });
 
   Tracker.autorun(() => {
-    console.log(PlayersIndex.search('Barack', { limit: 20 }).fetch());
+    console.log(AppsIndex .search('Counter-Strike', { limit: 20 }).fetch());
   });
 
 }
@@ -191,19 +191,7 @@ var first_names = [
   Meteor.startup(function () {
 
     // getAppsList(processAppsList);
-    getDetails();
+    // getDetails();
 
-    // if (Players.find().count() < 100) {
-    //   for (var i = 0; i < 10 * 1000; i++) {
-    //     console.log(i + ' doc indexed');
-    //     Players.insert({
-    //       name: Random.choice(first_names) + ' ' + Random.choice(last_names),
-    //       score: Math.floor(Random.fraction() * 1000 / Random.fraction() / 100),
-    //       category: Random.choice(categories)
-    //     });
-    //   }
-
-    //   console.log('done!');
-    // }
   });
 }
