@@ -30,6 +30,7 @@
     <option value="Genius">Genius</option>
     <option value="Idler">Idler</option>
     <option value="Geek">Geek</option>
+    <option value="Geek">Multi-player</option>
   </select>
 
   {{#EasySearch.IfSearching index=index }}
@@ -73,7 +74,8 @@
 <template name="app">
   <li class="app {{selected}}">
     <h1 class="name">{{name}}</h1>
-    <h1 class="name">{{release_date}}</h1>
+    <h1 class="name">{{release_date.date}}</h1>
+    <h1 class="name">{{type}}</h1>
     <span class="metadata">
       <span class="category">{{category}}</span><span class="score">{{score}}</span>
     </span>

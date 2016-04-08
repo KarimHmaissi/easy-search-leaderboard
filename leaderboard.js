@@ -18,6 +18,8 @@ AppsIndex = new EasySearch.Index({
         selector.category = categoryFilter;
       }
 
+      selector.type = 'game';
+
       return selector;
     }
   }),
