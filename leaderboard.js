@@ -11,11 +11,11 @@ AppsIndex = new EasySearch.Index({
       return { name: 1 };
     },
     selector: function (searchObject, options, aggregation) {
-      let selector = this.defaultConfiguration().selector(searchObject, options, aggregation),
-        categoryFilter = options.search.props.categoryFilter;
+      let selector = this.defaultConfiguration().selector(searchObject, options, aggregation);
+      let categoryFilter = options.search.props.categoryFilter;
 
       if (_.isString(categoryFilter) && !_.isEmpty(categoryFilter)) {
-        selector.category = categoryFilter;
+        selector.publishers[0] = categoryFilter;
       }
 
       selector.type = 'game';
