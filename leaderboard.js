@@ -123,14 +123,14 @@ var first_names = [
 
   var getAppsList = function (callback) {
     var response = HTTP.get('http://api.steampowered.com/ISteamApps/GetAppList/v0002/').data;
-    callback(error, response);
+    callback(null, response);
   };
 
   var getAppDetails = function (appId, callback) {
     var response = HTTP.get('http://store.steampowered.com/api/appdetails/?appids=' + appId).data;
     if(response[appId].success + "" === "true") {
       console.log('got successful result!!!!!!!');
-      callback(error, response[appId].data);
+      callback(null, response[appId].data);
     } else {
       console.log("got false from success");
       return false;
