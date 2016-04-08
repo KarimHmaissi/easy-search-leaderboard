@@ -2,6 +2,8 @@
 // it is backed by a MongoDB collection named "players".
 
 Players = new Mongo.Collection("players");
+Apps = new Mongo.Collection('Apps');
+AppDetails = new Mongo.Collection('AppDetails');
 
 PlayersIndex = new EasySearch.Index({
   engine: new EasySearch.MongoDB({
